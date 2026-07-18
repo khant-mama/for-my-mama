@@ -101,82 +101,6 @@
             text-align: center;
         }
 
-        .fullscreen-surprise {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: linear-gradient(135deg, #ff758f 0%, #ff7ea5 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 999;
-            color: white;
-            animation: zoomInBg 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-            padding: 20px;
-            box-sizing: border-box;
-            overflow: hidden;
-        }
-
-        .surprise-title {
-            font-size: 45px;
-            text-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            margin: 0;
-            animation: popText 0.8s 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
-            z-index: 1001;
-        }
-
-        .surprise-text {
-            font-size: 22px;
-            max-width: 600px;
-            line-height: 1.8;
-            font-weight: bold;
-            margin-top: 20px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.15);
-            animation: fadeInText 1s 0.8s both;
-            z-index: 1001;
-        }
-
-        .rose-shower {
-            font-size: 70px;
-            animation: pulseHeart 1.2s infinite;
-            margin-bottom: 10px;
-            z-index: 1001;
-        }
-
-        .heart-fall {
-            position: absolute;
-            top: -10%;
-            color: rgba(255, 255, 255, 0.75);
-            font-size: 24px;
-            pointer-events: none;
-            animation: fall linear infinite;
-            z-index: 1000;
-        }
-
-        @keyframes fall {
-            0% { top: -10%; transform: translateX(0) rotate(0deg); opacity: 1; }
-            100% { top: 110%; transform: translateX(100px) rotate(360deg); opacity: 0; }
-        }
-        @keyframes zoomInBg {
-            from { transform: scale(0); opacity: 0; border-radius: 100%; }
-            to { transform: scale(1); opacity: 1; border-radius: 0; }
-        }
-        @keyframes popText {
-            from { transform: scale(0.5); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-        @keyframes fadeInText {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes pulseHeart {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.15); filter: drop-shadow(0 0 15px #fff); }
-            100% { transform: scale(1); }
-        }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -195,13 +119,13 @@
     <script>
         const specialDate = "8.5.2026"; 
         
-        // 🔒 Telegram Bot Configuration
+        // 🔒 Telegram Configuration
         const TELEGRAM_BOT_TOKEN = "8955077459:AAFPdw1agBB07JUN5LDXAPFHaeHcizBDGes"; 
         const TELEGRAM_CHAT_ID = "6797159836"; 
 
         let step = 0;
         const longMessages = [
-            "တကယ်တော့ ကိုယ်မင်းလေးကို အသက်ထက်ပိုပြီး ချစ်ရပါတယ်ဗျာ။ ကိုယ့်ဘဝမှာ မင်းမရှိရင် မဖြစ်လို့ အခုလို နှိမ့်ချပြီး တောင်းပန်တာပါ။ ရန်ဖြစ်တိုင်း Lမ်းခွဲစကားပြောမိတဲ့ ကိုယ့်ရဲ့ဆိုးဝါးတဲ့ စိတ်အကျင့်ကိုလည်း မင်းလေးအတွက် သေသေချာချာ ပြင်ပါ့မယ်။ ကိုယ့်ကို ခွင့်လွှတ်ပေးပါနော်။",
+            "တကယ်တော့ ကိုယ်မင်းလေးကို အသက်ထက်ပိုပြီး ချစ်ရပါတယ်ဗျာ။ ကိုယ့်ဘဝမှာ မင်းမရှိရင် မဖြစ်လို့ အခုလို နှိမ့်ချပြီး တောင်းပန်တာပါ။ ရန်ဖြစ်တိုင်း လမ်းခွဲစကားပြောမိတဲ့ ကိုယ့်ရဲ့ဆိုးဝါးတဲ့ စိတ်အကျင့်ကိုလည်း မင်းလေးအတွက် သေသေချာချာ ပြင်ပါ့မယ်။ ကိုယ့်ကို ခွင့်လွှတ်ပေးပါနော်။",
             "ကိုယ်တို့နှစ်ယောက် အခုလို အဝေးကြီးမှာ နေနေရပေမယ့် ကိုယ့်စိတ်တွေ မင်းဆီကနေ ဘယ်တော့မှ ယိမ်းယိုင်သွားမှာ မဟုတ်ဘူးဆိုတာ ကတိပေးပါတယ်။ ကိုယ့်မျက်စိထဲမှာရော ကိုယ့်နှလုံးသားထဲမှာပါ မင်းလေးတစ်ယောက်တည်းပဲ ရှိတာပါ။ ဘယ်သူ့ကိုမှလည်း စိတ်မဝင်စားသလို၊ စိတ်ကစားမှာလည်း မဟုတ်ပါဘူး။",
             "နောက်နောင် ဘယ်လောက်ပဲ ရန်ဖြစ်ဖြစ်၊ ဘယ်လောက်ပဲ အဆင်မပြေမှုတွေ ရှိရှိ မင်းလက်ကို ဘယ်တော့မှ ဖြုတ်ချပြီး ထားမသွားတော့ပါဘူး။ အဝေးမှာရှိနေလို့ ပိုပြီး ဂရုစိုက်ပေးရမယ့်အစား စိတ်ဆိုးအောင် လုပ်မိလို့ တကယ်တောင်းပန်ပါတယ်။ ကိုယ်တို့ အရင်လို ပျော်စရာကောင်းတဲ့ အချိန်တွေဆီ ပြန်သွားကြရအောင်နော်... ချစ်သူလေးရေ။"
         ];
@@ -256,79 +180,31 @@
 
         function showInputScreen() {
             const mainBox = document.getElementById('mainBox');
+            
+            // 🚀 HTML Form သုံးပြီး Telegram ကို တိုက်ရိုက် Redirect လုပ်မည့် ပုံစံအသစ်
             mainBox.innerHTML = `
                 <h1 style="color: #ff4d6d;">💌 Reply To Him</h1>
                 <p style="color: #555; font-size: 16px;">
-                    ကိုယ့်ရဲ့ ကတိတွေကို ဖတ်ပြီးပြီဆိုတော့... မောင့်ကို ခွင့်လွှတ်ကြောင်း (သို့မဟုတ်) ပြောချင်တဲ့ စာလေးကို ဒီအကွက်ထဲမှာ ကိုယ်တိုင်ရိုက်ပြီး ပြန်စာပေးလိုက်ပါဦးနော်။ 🥰
+                    ကိုယ့်ရဲ့ ကတိတွေကို ဖတ်ပြီးပြီဆိုတော့... မောင့်ကို ခွင့်လွှတ်ကြောင်း (သို့မဟုတ်) ပြောချင်တဲ့ စာလေးကို အောက်ကအကွက်မှာ ရိုက်ပြီး ပို့ပေးပါနော်။ 🥰
                 </p>
-                <textarea id="userReply" class="reply-textarea" placeholder="ဒီနေရာမှာ စာရိုက်ပါ..."></textarea>
-                <button class="btn-love" id="submitBtn" onclick="submitReply()">မောင့်ဆီ စာပို့လိုက်ပြီ 🚀</button>
+                
+                <form action="https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" method="GET" onsubmit="return appendChatId()">
+                    <input type="hidden" name="chat_id" value="${TELEGRAM_CHAT_ID}">
+                    <textarea id="userReply" class="reply-textarea" placeholder="ဒီနေရာမှာ စာရိုက်ပါ..." required></textarea>
+                    <input type="hidden" name="text" id="telegramText">
+                    <button type="submit" class="btn-love">မောင့်ဆီ စာပို့လိုက်ပြီ 🚀</button>
+                </form>
             `;
         }
 
-        function submitReply() {
+        function appendChatId() {
             const replyText = document.getElementById('userReply').value.trim();
-            if (replyText === "") {
-                alert("စာလေး တစ်ခုခု ရိုက်ပေးပါဦးနော်... 🥺");
-                return;
-            }
-
-            const btn = document.getElementById('submitBtn');
-            btn.innerHTML = "ခဏစောင့်ပါဦးနော်... ⏳";
-            btn.disabled = true;
-
             const current = new Date();
             const timeStr = current.toLocaleString();
-
-            const message = `🔔 *ကောင်မလေးဆီက ပြန်စာရောက်လာပြီ* 🔔\n\n📝 စာသား:\n"${replyText}"\n\n⏰ အချိန်: ${timeStr}`;
             
-            // Fix Fetch Method Using Standard Telegram Bot API URL
-            fetch("https://api.telegram.org/bot" + TELEGRAM_BOT_TOKEN + "/sendMessage", {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    chat_id: TELEGRAM_CHAT_ID,
-                    text: message
-                })
-            })
-            .then(function(res) {
-                showFinalSurpriseScreen();
-            })
-            .catch(function(err) {
-                console.error('Error:', err);
-                showFinalSurpriseScreen(); 
-            });
-        }
-
-        function showFinalSurpriseScreen() {
-            const surpriseDiv = document.createElement('div');
-            surpriseDiv.className = 'fullscreen-surprise';
-            surpriseDiv.innerHTML = `
-                <div class="rose-shower">🌹✨👩‍❤️‍👨✨💖</div>
-                <h1 class="surprise-title">Surprise! My Princess 👑</h1>
-                <div class="surprise-text">
-                    ကိုယ့်ဘဝရဲ့ အဖိုးတန်ဆုံး မင်းသမီးလေး ဖြစ်ပေးလို့ ကျေးဇူးအများကြီး တင်ပါတယ်ဗျာ။ ကိုယ်တို့ နောက်ဘယ်တော့မှ လက်တွဲမဖြုတ်ကြေးနော်... 🥰🌹
-                </div>
-                <p style="opacity: 0.8; font-size: 14px; margin-top: 40px; border: 1px dashed #fff; padding: 10px 20px; border-radius: 20px; z-index: 1001;">
-                    💌 မင်းရဲ့ ပြန်စာလေး မောင့်ရဲ့ Telegram ဆီ လျှို့ဝှက်ရောက်သွားပါပြီ။ ဖုန်းပြန်ပေးလိုက်လို့ ရပါပြီနော်။
-                </p>
-            `;
-            document.body.appendChild(surpriseDiv);
-            createHearts(surpriseDiv);
-        }
-
-        function createHearts(container) {
-            const hearts = ['💖', '❤️', '💝', '💕', '🌸'];
-            for (let i = 0; i < 40; i++) {
-                const heart = document.createElement('div');
-                heart.className = 'heart-fall';
-                heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
-                heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.animationDelay = Math.random() * 3 + 's';
-                heart.style.animationDuration = (Math.random() * 3 + 2) + 's'; 
-                heart.style.fontSize = (Math.random() * 20 + 15) + 'px'; 
-                container.appendChild(heart);
-            }
+            // Telegram ထဲ ပေးပို့မည့် စာသားပုံစံကို ပြင်ဆင်ခြင်း
+            document.getElementById('telegramText').value = `🔔 ကောင်မလေးဆီက ပြန်စာရောက်လာပြီ 🔔\n\n📝 စာသား: "${replyText}"\n\n⏰ အချိန်: ${timeStr}\n\n(စာပို့ပြီးပါပြီ၊ ဖုန်းပြန်ပေးလိုက်လို့ ရပါပြီနော် မောင်)`;
+            return true;
         }
     </script>
 </body>
