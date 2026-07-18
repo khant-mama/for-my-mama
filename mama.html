@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Princess 💖</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #ffe4e1;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        .box {
+            background-color: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 2px solid #ffb6c1;
+            max-width: 500px;
+            width: 90%;
+            transition: all 0.5s ease;
+            z-index: 10;
+        }
+
+        h1 {
+            color: #d32f2f;
+            font-size: 26px;
+            margin-bottom: 15px;
+        }
+
+        .message-container {
+            color: #444;
+            font-size: 16px;
+            line-height: 1.8;
+            text-align: left;
+            background-color: #fff0f5;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            border-left: 5px solid #ff4d6d;
+        }
+
+        .promise-text {
+            margin-bottom: 20px;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .btn-love {
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 14px 35px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(255, 77, 109, 0.3);
+            margin-top: 10px;
+        }
+
+        .btn-love:hover {
+            background-color: #ff758f;
+            transform: scale(1.05);
+        }
+
+        .reply-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ffb6c1;
+            border-radius: 10px;
+            font-size: 16px;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+            outline: none;
+            text-align: center;
+        }
+
+        /* ဝါးခနဲ Screen တစ်ခုလုံး ပြည့်သွားမယ့် Surprise Style */
+        .fullscreen-surprise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff758f 0%, #ff7ea5 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            color: white;
+            animation: zoomInBg 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .surprise-title {
+            font-size: 45px;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin: 0;
+            animation: popText 0.8s 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+            z-index: 1001;
+        }
+
+        .surprise-text {
+            font-size: 22px;
+            max-width: 600px;
+            line-height: 1.8;
+            font-weight: bold;
+            margin-top: 20px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            animation: fadeInText 1s 0.8s both;
+            z-index: 1001;
+        }
+
+        .rose-shower {
+            font-size: 70px;
+            animation: pulseHeart 1.2s infinite;
+            margin-bottom: 10px;
+            z-index: 1001;
+        }
+
+        /* 💕 အသဲပုံများ ကြွေကျမည့် Effect Style */
+        .heart-fall {
+            position: absolute;
+            top: -10%;
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 24px;
+            pointer-events: none;
+            animation: fall linear infinite;
+            z-index: 1000;
+        }
+
+        .secret-result {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: left;
+            color: #2e7d32;
+            font-weight: bold;
+            line-height: 1.6;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        @keyframes fall {
+            0% { top: -10%; transform: translateX(0) rotate(0deg); opacity: 1; }
+            100% { top: 110%; transform: translateX(100px) rotate(360deg); opacity: 0; }
+        }
+        @keyframes zoomInBg {
+            from { transform: scale(0); opacity: 0; border-radius: 100%; }
+            to { transform: scale(1); opacity: 1; border-radius: 0; }
+        }
+        @keyframes popText {
+            from { transform: scale(0.5); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        @keyframes fadeInText {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulseHeart {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); filter: drop-shadow(0 0 15px #fff); }
+            100% { transform: scale(1); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box" id="mainBox">
+        <!-- အဆင့် ၁ - Welcome Screen -->
+        <h1>Welcome, My Girl 🌹</h1>
+        <p style="color: #555;">ကျွန်တော်တို့နှစ်ယောက်ရဲ့ အမှတ်တရနေ့လေး (Date) ကို ရိုက်ထည့်ပြီး ဝင်ပေးပါနော်...</p>
+        <input type="text" id="dateInput" class="reply-input" placeholder="ဥပမာ: 15.2.2017" autocomplete="off">
+        <button class="btn-love" onclick="checkDate()">ဝင်မယ် 💖</button>
+    </div>
+
+    <!-- 🔑 မောင် ဖတ်ဖို့ လျှို့ဝှက်ဧရိယာ -->
+    <div id="secretArea" style="position: fixed; bottom: 80px; z-index: 10000; width: 90%; max-width: 400px; display: none;"></div>
+
+    <script>
+        const specialDate = "8.5.2026"; 
+        
+        let step = 0;
+        let savedReply = ""; 
+        let savedTime = ""; 
+
+        const longMessages = [
+            "တကယ်တော့ ကိုယ်မင်းလေးကို အသက်ထက်ပိုပြီး ချစ်ရပါတယ်ဗျာ။ ကိုယ့်ဘဝမှာ မင်းမရှိရင် မဖြစ်လို့ အခုလို နှိမ့်ချပြီး တောင်းပန်တာပါ။ ရန်ဖြစ်တိုင်း လမ်းခွဲစကားပြောမိတဲ့ ကိုယ့်ရဲ့ဆိုးဝါးတဲ့ စိတ်အကျင့်ကိုလည်း မင်းလေးအတွက် သေသေချာချာ ပြင်ပါ့မယ်။ ကိုယ့်ကို ခွင့်လွှတ်ပေးပါနော်။",
+            
+            "ကိုယ်တို့နှစ်ယောက် အခုလို အဝေးကြီးမှာ နေနေရပေမယ့် ကိုယ့်စိတ်တွေ မင်းဆီကနေ ဘယ်တော့မှ ယိမ်းယိုင်သွားမှာ မဟုတ်ဘူးဆိုတာ ကတိပေးပါတယ်။ ကိုယ့်မျက်စိထဲမှာရော ကိုယ့်နှလုံးသားထဲမှာပါ မင်းလေးတစ်ယောက်တည်းပဲ ရှိတာပါ။ ဘယ်သူ့ကိုမှလည်း စိတ်မဝင်စားသလို၊ စိတ်ကစားမှာလည်း မဟုတ်ပါဘူး။",
+            
+            "နောက်နောင် ဘယ်လောက်ပဲ ရန်ဖြစ်ဖြစ်၊ ဘယ်လောက်ပဲ အဆင်မပြေမှုတွေ ရှိရှိ မင်းလက်ကို ဘယ်တော့မှ ဖြုတ်ချပြီး ထားမသွားတော့ပါဘူး။ အဝေးမှာရှိနေလို့ ပိုပြီး ဂရုစိုက်ပေးရမယ့်အစား စိတ်ဆိုးအောင် လုပ်မိလို့ တကယ်တောင်းပန်ပါတယ်။ ကိုယ်တို့ အရင်လို ပျော်စရာကောင်းတဲ့ အချိန်တွေဆီ ပြန်သွားကြရအောင်နော်... ချစ်သူလေးရေ။"
+        ];
+
+        function checkDate() {
+            let input = document.getElementById('dateInput').value.trim();
+            
+            if (input === "") {
+                alert("အာ... ရက်စွဲလေး တစ်ခုခု ရိုက်ထည့်ပါဦးနော်... 🥺");
+                return;
+            }
+            
+            if (input === specialDate) {
+                showApologyScreen();
+            } else {
+                alert("အာ... အဲဒီနေ့ မဟုတ်သေးဘူးနော်၊ ပြန်စဉ်းစားကြည့်ဦး! 🥺");
+            }
+        }
+
+        function showApologyScreen() {
+            const mainBox = document.getElementById('mainBox');
+            mainBox.innerHTML = `
+                <h1>I am so sorry, my girl... 🥺💖</h1>
+                <div class="message-container" id="msgContainer">
+                    <div class="promise-text">
+                        ဟိုနေ့က စိတ်လိုက်မာန်ပါ လမ်းခွဲစကား ပြောမိတာ တကယ်တောင်းပန်ပါတယ်နော်။ မင်းလေး ဘယ်လောက်တောင် စိတ်ထိခိုက်သွားမလဲဆိုတာ ကိုယ်တွေးမိပြီး တကယ်နောင်တရလို့ မဆုံးပါဘူး။ စိတ်မဆိုးပါနဲ့တော့နော်... 🥺
+                    </div>
+                </div>
+                <button class="btn-love" id="actionBtn" onclick="nextMessage()">
+                    စိတ်မဆိုးတော့ဘူး (ဆက်ဖတ်မယ်) 🥰
+                </button>
+            `;
+        }
+
+        function nextMessage() {
+            const container = document.getElementById('msgContainer');
+            const btn = document.getElementById('actionBtn');
+            
+            if (step < longMessages.length) {
+                const newDiv = document.createElement('div');
+                newDiv.className = 'promise-text';
+                newDiv.style.marginTop = '15px';
+                newDiv.innerHTML = longMessages[step];
+                container.appendChild(newDiv);
+                
+                step++;
+                
+                if (step === longMessages.length) {
+                    btn.innerHTML = "ခွင့်လွှတ်ကြောင်း စာပြန်မယ် ✍️💖";
+                }
+            } else {
+                showInputScreen();
+            }
+        }
+
+        function showInputScreen() {
+            const mainBox = document.getElementById('mainBox');
+            mainBox.innerHTML = `
+                <h1 style="color: #ff4d6d;">💌 Reply To Him</h1>
+                <p style="color: #555; font-size: 16px;">
+                    ကိုယ့်ရဲ့ ကတိတွေကို ဖတ်ပြီးပြီဆိုတော့... မောင့်ကို ခွင့်လွှတ်ကြောင်း (သို့မဟုတ်) ပြောချင်တဲ့ စာလေးကို ဒီအကွက်ထဲမှာ ကိုယ်တိုင်ရိုက်ပြီး ပြန်စာပေးလိုက်ပါဦးနော်။ 🥰
+                </p>
+                <input type="text" id="userReply" class="reply-input" placeholder="ဒီနေရာမှာ စာရိုက်ပါ..." autocomplete="off">
+                <button class="btn-love" onclick="submitReply()">မောင့်ဆီ စာပို့လိုက်ပြီ 🚀</button>
+            `;
+        }
+
+        function submitReply() {
+            const replyText = document.getElementById('userReply').value;
+            
+            if (replyText.trim() === "") {
+                alert("စာလေး တစ်ခုခု ရိုက်ပေးပါဦးနော်... 🥺");
+                return;
+            }
+
+            const current = new Date();
+            const dateStr = current.toLocaleDateString();
+            const timeStr = current.toLocaleTimeString();
+            
+            savedReply = replyText; 
+            savedTime = `${dateStr} (${timeStr})`; 
+            
+            showFinalSurpriseScreen();
+        }
+
+        function showFinalSurpriseScreen() {
+            const surpriseDiv = document.createElement('div');
+            surpriseDiv.className = 'fullscreen-surprise';
+            surpriseDiv.innerHTML = `
+                <div class="rose-shower">🌹✨👩‍❤️‍👨✨💖</div>
+                <h1 class="surprise-title">Surprise! My Princess 👑</h1>
+                
+                <div class="surprise-text">
+                    ကိုယ့်ဘဝရဲ့ အဖိုးတန်ဆုံး မင်းသမီးလေး ဖြစ်ပေးလို့ ကျေးဇူးအများကြီး တင်ပါတယ်ဗျာ။ ကိုယ်တို့ နောက်ဘယ်တော့မှ လက်တွဲမဖြုတ်ကြေးနော်... 🥰🌹
+                </div>
+
+                <p style="opacity: 0.8; font-size: 14px; margin-top: 40px; border: 1px dashed #fff; padding: 10px 20px; border-radius: 20px; z-index: 1001;">
+                    💌 မင်းရဲ့ ပြန်စာလေး မောင့်ဆီ လျှို့ဝှက်ရောက်သွားပါပြီ။ ဖုန်းပြန်ပေးလိုက်လို့ ရပါပြီနော်။
+                </p>
+
+                <!-- 🔑 မောင် နှိပ်မယ့် လျှို့ဝှက်ခလုတ် -->
+                <button style="background:transparent; border:none; color:transparent; width:200px; height:60px; position:absolute; bottom:10px; cursor:pointer; z-index:1002;" onclick="checkSecret()">
+                    .
+                </button>
+            `;
+            
+            document.body.appendChild(surpriseDiv);
+            createHearts(surpriseDiv);
+        }
+
+        function createHearts(container) {
+            const hearts = ['💖', '❤️', '💝', '💕', '🌸'];
+            for (let i = 0; i < 40; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart-fall';
+                heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+                
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDelay = Math.random() * 3 + 's';
+                heart.style.animationDuration = (Math.random() * 3 + 2) + 's'; 
+                heart.style.fontSize = (Math.random() * 20 + 15) + 'px'; 
+                
+                container.appendChild(heart);
+            }
+        }
+
+        function checkSecret() {
+            let code = prompt("မောင်... ကောင်မလေး ရိုက်ခဲ့တဲ့စာကို ဖတ်ဖို့ လျှို့ဝှက် Code ကို ရိုက်ထည့်ပါ -");
+            if(code === "6.2.2006") {
+                const area = document.getElementById('secretArea');
+                area.style.display = "block";
+                area.innerHTML = `
+                    <div class="secret-result">
+                        💚 မင်းသမီးလေး ရေးခဲ့တဲ့ လျှို့ဝှက်စာ - <br>
+                        "${savedReply}"<br><br>
+                        🕒 ဖတ်သွားသည့်အချိန် - <br>
+                        ${savedTime}
+                    </div>
+                `;
+            } else {
+                alert("မှားနေတယ်ဗျာ! မောင်ကိုယ်တိုင် မဟုတ်ရင် ဖတ်လို့မရပါဘူး။ 😝");
+            }
+        }
+    </script>
+
+</body>
+</html>
