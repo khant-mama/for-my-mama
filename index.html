@@ -5,106 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For My Princess 💖</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background-color: #ffe4e1;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            text-align: center;
-            overflow-x: hidden;
-        }
-
-        .box {
-            background-color: white;
-            padding: 40px 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            border: 2px solid #ffb6c1;
-            max-width: 500px;
-            width: 90%;
-            transition: all 0.5s ease;
-            z-index: 10;
-        }
-
-        h1 {
-            color: #d32f2f;
-            font-size: 26px;
-            margin-bottom: 15px;
-        }
-
-        .message-container {
-            color: #444;
-            font-size: 16px;
-            line-height: 1.8;
-            text-align: left;
-            background-color: #fff0f5;
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 25px;
-            border-left: 5px solid #ff4d6d;
-        }
-
-        .promise-text {
-            margin-bottom: 20px;
-            animation: fadeIn 0.5s ease-in-out;
-        }
-
-        .btn-love {
-            background-color: #ff4d6d;
-            color: white;
-            border: none;
-            padding: 14px 35px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0 4px 10px rgba(255, 77, 109, 0.3);
-            margin-top: 10px;
-        }
-
-        .btn-love:hover {
-            background-color: #ff758f;
-            transform: scale(1.05);
-        }
-
-        .reply-textarea {
-            width: 100%;
-            height: 100px;
-            padding: 12px;
-            border: 2px solid #ffb6c1;
-            border-radius: 12px;
-            font-size: 16px;
-            font-family: inherit;
-            box-sizing: border-box;
-            margin-bottom: 15px;
-            outline: none;
-            resize: none;
-            text-align: left;
-            line-height: 1.6;
-        }
-
-        .reply-input {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #ffb6c1;
-            border-radius: 10px;
-            font-size: 16px;
-            box-sizing: border-box;
-            margin-bottom: 15px;
-            outline: none;
-            text-align: center;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        body { margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: #ffe4e1; font-family: sans-serif; text-align: center; }
+        .box { background-color: white; padding: 40px 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border: 2px solid #ffb6c1; max-width: 500px; width: 90%; }
+        .btn-love { background-color: #ff4d6d; color: white; border: none; padding: 14px 35px; border-radius: 50px; cursor: pointer; font-size: 16px; font-weight: bold; margin-top: 10px; }
+        .reply-textarea { width: 100%; height: 100px; padding: 12px; border: 2px solid #ffb6c1; border-radius: 12px; font-size: 16px; box-sizing: border-box; margin-bottom: 15px; outline: none; resize: none; text-align: left; }
+        .reply-input { width: 100%; padding: 12px; border: 2px solid #ffb6c1; border-radius: 10px; font-size: 16px; box-sizing: border-box; margin-bottom: 15px; text-align: center; }
     </style>
 </head>
 <body>
@@ -112,99 +17,51 @@
     <div class="box" id="mainBox">
         <h1>Welcome, My Girl 🌹</h1>
         <p style="color: #555;">ကျွန်တော်တို့နှစ်ယောက်ရဲ့ အမှတ်တရနေ့လေး (Date) ကို ရိုက်ထည့်ပြီး ဝင်ပေးပါနော်...</p>
-        <input type="text" id="dateInput" class="reply-input" placeholder="ဥပမာ: 8.5.2026" autocomplete="off">
+        <input type="text" id="dateInput" class="reply-input" placeholder="ဥပမာ: 8.5.2026">
         <button class="btn-love" onclick="checkDate()">ဝင်မယ် 💖</button>
     </div>
 
     <script>
-        const specialDate = "8.5.2026"; 
-        
-        // 🔒 Telegram Configuration
-        const TELEGRAM_BOT_TOKEN = "8955077459:AAFPdw1agBB07JUN5LDXAPFHaeHcizbDGes; 
+        // ✅ ဒီနေရာမှာ ပုံထဲက အမှန်အတိုင်း ထည့်ပေးထားပါတယ်
+        const TELEGRAM_BOT_TOKEN = "8955077459:AAFPdw1agBB07JUN5LDXAPFHaeHcizBDGes"; 
         const TELEGRAM_CHAT_ID = "6797159836"; 
 
-        let step = 0;
-        const longMessages = [
-            "တကယ်တော့ ကိုယ်မင်းလေးကို အသက်ထက်ပိုပြီး ချစ်ရပါတယ်ဗျာ။ ကိုယ့်ဘဝမှာ မင်းမရှိရင် မဖြစ်လို့ အခုလို နှိမ့်ချပြီး တောင်းပန်တာပါ။ ရန်ဖြစ်တိုင်း လမ်းခွဲစကားပြောမိတဲ့ ကိုယ့်ရဲ့ဆိုးဝါးတဲ့ စိတ်အကျင့်ကိုလည်း မင်းလေးအတွက် သေသေချာချာ ပြင်ပါ့မယ်။ ကိုယ့်ကို ခွင့်လွှတ်ပေးပါနော်။",
-            "ကိုယ်တို့နှစ်ယောက် အခုလို အဝေးကြီးမှာ နေနေရပေမယ့် ကိုယ့်စိတ်တွေ မင်းဆီကနေ ဘယ်တော့မှ ယိမ်းယိုင်သွားမှာ မဟုတ်ဘူးဆိုတာ ကတိပေးပါတယ်။ ကိုယ့်မျက်စိထဲမှာရော ကိုယ့်နှလုံးသားထဲမှာပါ မင်းလေးတစ်ယောက်တည်းပဲ ရှိတာပါ။ ဘယ်သူ့ကိုမှလည်း စိတ်မဝင်စားသလို၊ စိတ်ကစားမှာလည်း မဟုတ်ပါဘူး။",
-            "နောက်နောင် ဘယ်လောက်ပဲ ရန်ဖြစ်ဖြစ်၊ ဘယ်လောက်ပဲ အဆင်မပြေမှုတွေ ရှိရှိ မင်းလက်ကို ဘယ်တော့မှ ဖြုတ်ချပြီး ထားမသွားတော့ပါဘူး။ အဝေးမှာရှိနေလို့ ပိုပြီး ဂရုစိုက်ပေးရမယ့်အစား စိတ်ဆိုးအောင် လုပ်မိလို့ တကယ်တောင်းပန်ပါတယ်။ ကိုယ်တို့ အရင်လို ပျော်စရာကောင်းတဲ့ အချိန်တွေဆီ ပြန်သွားကြရအောင်နော်... ချစ်သူလေးရေ။"
-        ];
-
         function checkDate() {
-            let input = document.getElementById('dateInput').value.trim();
-            if (input === "") {
-                alert("အာ... ရက်စွဲလေး တစ်ခုခု ရိုက်ထည့်ပါဦးနော်... 🥺");
-                return;
-            }
-            if (input === specialDate) {
-                showApologyScreen();
+            if (document.getElementById('dateInput').value.trim() === "8.5.2026") {
+                showApology();
             } else {
-                alert("အာ... အဲဒီနေ့ မဟုတ်သေးဘူးနော်၊ ပြန်စဉ်းစားကြည့်ဦး! 🥺");
+                alert("ရက်စွဲလေး ပြန်စစ်ကြည့်ပါဦးနော်... 🥺");
             }
         }
 
-        function showApologyScreen() {
-            const mainBox = document.getElementById('mainBox');
-            mainBox.innerHTML = `
-                <h1>I am so sorry, my girl... 🥺💖</h1>
-                <div class="message-container" id="msgContainer">
-                    <div class="promise-text">
-                        ဟိုနေ့က စိတ်လိုက်မာန်ပါ လမ်းခွဲစကား ပြောမိတာ တကယ်တောင်းပန်ပါတယ်နော်။ မင်းလေး ဘယ်လောက်တောင် စိတ်ထိခိုက်သွားမလဲဆိုတာ ကိုယ်တွေးမိပြီး တကယ်နောင်တရလို့ မဆုံးပါဘူး။ စိတ်မဆိုးပါနဲ့တော့နော်... 🥺
-                    </div>
-                </div>
-                <button class="btn-love" id="actionBtn" onclick="nextMessage()">
-                    ဆက်ဖတ်မယ် 🥰
-                </button>
+        function showApology() {
+            document.getElementById('mainBox').innerHTML = `
+                <h1>I am so sorry... 🥺</h1>
+                <p>ကိုယ်မှားသွားတဲ့အတွက် တောင်းပန်ပါတယ်... စာလေးတစ်စောင်လောက်တော့ ရေးပေးပါနော်။</p>
+                <textarea id="replyText" class="reply-textarea" placeholder="ဒီမှာ စာရိုက်ပါ..."></textarea>
+                <button class="btn-love" id="sendBtn" onclick="sendMessage()">ပို့မယ် 🚀</button>
             `;
         }
 
-        function nextMessage() {
-            const container = document.getElementById('msgContainer');
-            const btn = document.getElementById('actionBtn');
+        async function sendMessage() {
+            const text = document.getElementById('replyText').value;
+            if (!text) return alert("စာရေးပေးပါဦးနော်");
             
-            if (step < longMessages.length) {
-                const newDiv = document.createElement('div');
-                newDiv.className = 'promise-text';
-                newDiv.style.marginTop = '15px';
-                newDiv.innerHTML = longMessages[step];
-                container.appendChild(newDiv);
-                
-                step++;
-                if (step === longMessages.length) {
-                    btn.innerHTML = "ခွင့်လွှတ်ကြောင်း စာပြန်မယ် ✍️💖";
-                }
-            } else {
-                showInputScreen();
+            const btn = document.getElementById('sendBtn');
+            btn.innerText = "ပို့နေပါတယ်...";
+            
+            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+            try {
+                await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: "💖 ကောင်မလေးဆီက ပြန်စာ: " + text })
+                });
+                alert("စာလေး ရောက်သွားပါပြီ မောင်! ကျေးဇူးတင်ပါတယ် 😍");
+                location.reload();
+            } catch (e) {
+                alert("Error ဖြစ်သွားပါတယ် မောင်...");
             }
-        }
-
-        function showInputScreen() {
-            const mainBox = document.getElementById('mainBox');
-            
-            // 🚀 HTML Form သုံးပြီး Telegram ကို တိုက်ရိုက် Redirect လုပ်မည့် ပုံစံအသစ်
-            mainBox.innerHTML = `
-                <h1 style="color: #ff4d6d;">💌 Reply To Him</h1>
-                <p style="color: #555; font-size: 16px;">
-                    ကိုယ့်ရဲ့ ကတိတွေကို ဖတ်ပြီးပြီဆိုတော့... မောင့်ကို ခွင့်လွှတ်ကြောင်း (သို့မဟုတ်) ပြောချင်တဲ့ စာလေးကို အောက်ကအကွက်မှာ ရိုက်ပြီး ပို့ပေးပါနော်။ 🥰
-                </p>
-                
-                <form action="https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" method="GET" onsubmit="return appendChatId()">
-                    <input type="hidden" name="chat_id" value="${TELEGRAM_CHAT_ID}">
-                    <textarea id="userReply" class="reply-textarea" placeholder="ဒီနေရာမှာ စာရိုက်ပါ..." required></textarea>
-                    <input type="hidden" name="text" id="telegramText">
-                    <button type="submit" class="btn-love">မောင့်ဆီ စာပို့လိုက်ပြီ 🚀</button>
-                </form>
-            `;
-        }
-
-        function appendChatId() {
-            const replyText = document.getElementById('userReply').value.trim();
-            const current = new Date();
-            const timeStr = current.toLocaleString();
-            
-            // Telegram ထဲ ပေးပို့မည့် စာသားပုံစံကို ပြင်ဆင်ခြင်း
-            document.getElementById('telegramText').value = `🔔 ကောင်မလေးဆီက ပြန်စာရောက်လာပြီ 🔔\n\n📝 စာသား: "${replyText}"\n\n⏰ အချိန်: ${timeStr}\n\n(စာပို့ပြီးပါပြီ၊ ဖုန်းပြန်ပေးလိုက်လို့ ရပါပြီနော် မောင်)`;
-            return true;
         }
     </script>
 </body>
