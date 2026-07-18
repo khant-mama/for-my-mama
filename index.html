@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For My Princess 💖</title>
     <style>
-        body { background-color: #ffe4e1; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; font-family: sans-serif; text-align: center; }
+        body { background: #ffe4e1; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; font-family: sans-serif; text-align: center; }
         .box { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); width: 90%; max-width: 400px; }
         input, textarea { width: 100%; padding: 12px; margin: 10px 0; border: 2px solid #ffb6c1; border-radius: 10px; box-sizing: border-box; }
         button { background: #ff4d6d; color: white; border: none; padding: 12px 25px; border-radius: 20px; cursor: pointer; font-weight: bold; }
@@ -20,6 +20,7 @@
 </div>
 
 <script>
+    // ⚠️ ဒီနေရာတွေကို သေချာစစ်ပါ
     const TOKEN = "8955077459:AAFPdw1agBB07JUN5LDXAPFHaeHcizBDGes";
     const CHAT_ID = "6797159836";
 
@@ -27,7 +28,7 @@
         if(document.getElementById('date').value === "8.5.2026") {
             document.getElementById('app').innerHTML = `
                 <h1>I am so sorry... 🥺</h1>
-                <textarea id="msg" placeholder="ဒီမှာ စာရိုက်ပါ..."></textarea>
+                <textarea id="msg" placeholder="မောင့်ကို ခွင့်လွှတ်ကြောင်း စာလေးရေးပေးပါ..."></textarea>
                 <button id="sendBtn" onclick="send()">ပို့မယ် 🚀</button>
             `;
         } else {
@@ -35,31 +36,31 @@
         }
     }
 
-    function send() {
+    async function send() {
         let msg = document.getElementById('msg').value;
         if(!msg) return alert("စာရေးပေးပါဦးနော်");
         
         document.getElementById('sendBtn').innerText = "ပို့နေပါတယ်...";
         
-        // Telegram API ကို Proxy ခံပြီး ခေါ်ခြင်း
-        let url = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
-        
-        fetch(url, {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({chat_id: CHAT_ID, text: "💖 ကောင်မလေးဆီက ပြန်စာ: " + msg})
-        })
-        .then(res => res.json())
-        .then(data => {
+        try {
+            let response = await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({chat_id: CHAT_ID, text: "💖 ကောင်မလေးဆီက ပြန်စာ: " + msg})
+            });
+            
+            let data = await response.json();
+            
             if(data.ok) {
                 document.body.innerHTML = `<div class="box"><h1>Thank you! 💖</h1><p>မောင့်ဆီ စာရောက်သွားပါပြီ။</p></div>`;
             } else {
                 alert("Error: " + data.description);
+                document.getElementById('sendBtn').innerText = "ပို့မယ် 🚀";
             }
-        })
-        .catch(err => {
-            alert("ကွန်ရက် အနှောင့်အယှက် ဖြစ်နေပါတယ် မောင်။ ပြန်စမ်းကြည့်ပေးပါဦး။");
-        });
+        } catch(err) {
+            alert("ကွန်ရက် ပြဿနာဖြစ်နေပါတယ်...");
+            document.getElementById('sendBtn').innerText = "ပို့မယ် 🚀";
+        }
     }
 </script>
 </body>
