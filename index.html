@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+                            <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -73,6 +73,22 @@
             transform: scale(1.05);
         }
 
+        .reply-textarea {
+            width: 100%;
+            height: 100px;
+            padding: 12px;
+            border: 2px solid #ffb6c1;
+            border-radius: 12px;
+            font-size: 16px;
+            font-family: inherit;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+            outline: none;
+            resize: none;
+            text-align: left;
+            line-height: 1.6;
+        }
+
         .reply-input {
             width: 100%;
             padding: 12px;
@@ -85,7 +101,6 @@
             text-align: center;
         }
 
-        /* ဝါးခနဲ Screen တစ်ခုလုံး ပြည့်သွားမယ့် Surprise Style */
         .fullscreen-surprise {
             position: fixed;
             top: 0;
@@ -131,7 +146,6 @@
             z-index: 1001;
         }
 
-        /* 💕 အသဲပုံများ ကြွေကျမည့် Effect Style */
         .heart-fall {
             position: absolute;
             top: -10%;
@@ -140,19 +154,6 @@
             pointer-events: none;
             animation: fall linear infinite;
             z-index: 1000;
-        }
-
-        .secret-result {
-            background-color: #e8f5e9;
-            border-left: 5px solid #4caf50;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
-            text-align: left;
-            color: #2e7d32;
-            font-weight: bold;
-            line-height: 1.6;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
         @keyframes fall {
@@ -185,39 +186,32 @@
 <body>
 
     <div class="box" id="mainBox">
-        <!-- အဆင့် ၁ - Welcome Screen -->
         <h1>Welcome, My Girl 🌹</h1>
         <p style="color: #555;">ကျွန်တော်တို့နှစ်ယောက်ရဲ့ အမှတ်တရနေ့လေး (Date) ကို ရိုက်ထည့်ပြီး ဝင်ပေးပါနော်...</p>
-        <input type="text" id="dateInput" class="reply-input" placeholder="ဥပမာ: 15.2.2017" autocomplete="off">
+        <input type="text" id="dateInput" class="reply-input" placeholder="ဥပမာ: 8.5.2026" autocomplete="off">
         <button class="btn-love" onclick="checkDate()">ဝင်မယ် 💖</button>
     </div>
-
-    <!-- 🔑 မောင် ဖတ်ဖို့ လျှို့ဝှက်ဧရိယာ -->
-    <div id="secretArea" style="position: fixed; bottom: 80px; z-index: 10000; width: 90%; max-width: 400px; display: none;"></div>
 
     <script>
         const specialDate = "8.5.2026"; 
         
-        let step = 0;
-        let savedReply = ""; 
-        let savedTime = ""; 
+        // 🔒 Telegram Bot Configuration
+        const TELEGRAM_BOT_TOKEN = "8955077459:AAFPdw1agBB07JUN5LDXAPFHaeHcizBDGes"; 
+        const TELEGRAM_CHAT_ID = "6797159836"; 
 
+        let step = 0;
         const longMessages = [
-            "တကယ်တော့ ကိုယ်မင်းလေးကို အသက်ထက်ပိုပြီး ချစ်ရပါတယ်ဗျာ။ ကိုယ့်ဘဝမှာ မင်းမရှိရင် မဖြစ်လို့ အခုလို နှိမ့်ချပြီး တောင်းပန်တာပါ။ ရန်ဖြစ်တိုင်း လမ်းခွဲစကားပြောမိတဲ့ ကိုယ့်ရဲ့ဆိုးဝါးတဲ့ စိတ်အကျင့်ကိုလည်း မင်းလေးအတွက် သေသေချာချာ ပြင်ပါ့မယ်။ ကိုယ့်ကို ခွင့်လွှတ်ပေးပါနော်။",
-            
+            "ตကယ်တော့ ကိုယ်မင်းလေးကို အသက်ထက်ပိုပြီး ချစ်ရပါတယ်ဗျာ။ ကိုယ့်ဘဝမှာ မင်းမရှိရင် မဖြစ်လို့ အခုလို နှိမ့်ချပြီး တောင်းပန်တာပါ။ ရန်ဖြစ်တိုင်း လမ်းခွဲစကားပြောမိတဲ့ ကိုယ့်ရဲ့ဆိုးဝါးတဲ့ စိတ်အကျင့်ကိုလည်း မင်းလေးအတွက် သေသေချာချာ ပြင်ပါ့မယ်။ ကိုယ့်ကို ခွင့်လွှတ်ပေးပါနော်။",
             "ကိုယ်တို့နှစ်ယောက် အခုလို အဝေးကြီးမှာ နေနေရပေမယ့် ကိုယ့်စိတ်တွေ မင်းဆီကနေ ဘယ်တော့မှ ယိမ်းယိုင်သွားမှာ မဟုတ်ဘူးဆိုတာ ကတိပေးပါတယ်။ ကိုယ့်မျက်စိထဲမှာရော ကိုယ့်နှလုံးသားထဲမှာပါ မင်းလေးတစ်ယောက်တည်းပဲ ရှိတာပါ။ ဘယ်သူ့ကိုမှလည်း စိတ်မဝင်စားသလို၊ စိတ်ကစားမှာလည်း မဟုတ်ပါဘူး။",
-            
             "နောက်နောင် ဘယ်လောက်ပဲ ရန်ဖြစ်ဖြစ်၊ ဘယ်လောက်ပဲ အဆင်မပြေမှုတွေ ရှိရှိ မင်းလက်ကို ဘယ်တော့မှ ဖြုတ်ချပြီး ထားမသွားတော့ပါဘူး။ အဝေးမှာရှိနေလို့ ပိုပြီး ဂရုစိုက်ပေးရမယ့်အစား စိတ်ဆိုးအောင် လုပ်မိလို့ တကယ်တောင်းပန်ပါတယ်။ ကိုယ်တို့ အရင်လို ပျော်စရာကောင်းတဲ့ အချိန်တွေဆီ ပြန်သွားကြရအောင်နော်... ချစ်သူလေးရေ။"
         ];
 
         function checkDate() {
             let input = document.getElementById('dateInput').value.trim();
-            
             if (input === "") {
                 alert("အာ... ရက်စွဲလေး တစ်ခုခု ရိုက်ထည့်ပါဦးနော်... 🥺");
                 return;
             }
-            
             if (input === specialDate) {
                 showApologyScreen();
             } else {
@@ -252,7 +246,6 @@
                 container.appendChild(newDiv);
                 
                 step++;
-                
                 if (step === longMessages.length) {
                     btn.innerHTML = "ခွင့်လွှတ်ကြောင်း စာပြန်မယ် ✍️💖";
                 }
@@ -268,27 +261,45 @@
                 <p style="color: #555; font-size: 16px;">
                     ကိုယ့်ရဲ့ ကတိတွေကို ဖတ်ပြီးပြီဆိုတော့... မောင့်ကို ခွင့်လွှတ်ကြောင်း (သို့မဟုတ်) ပြောချင်တဲ့ စာလေးကို ဒီအကွက်ထဲမှာ ကိုယ်တိုင်ရိုက်ပြီး ပြန်စာပေးလိုက်ပါဦးနော်။ 🥰
                 </p>
-                <input type="text" id="userReply" class="reply-input" placeholder="ဒီနေရာမှာ စာရိုက်ပါ..." autocomplete="off">
-                <button class="btn-love" onclick="submitReply()">မောင့်ဆီ စာပို့လိုက်ပြီ 🚀</button>
+                <textarea id="userReply" class="reply-textarea" placeholder="ဒီနေရာမှာ စာရိုက်ပါ..."></textarea>
+                <button class="btn-love" id="submitBtn" onclick="submitReply()">မောင့်ဆီ စာပို့လိုက်ပြီ 🚀</button>
             `;
         }
 
         function submitReply() {
-            const replyText = document.getElementById('userReply').value;
-            
-            if (replyText.trim() === "") {
+            const replyText = document.getElementById('userReply').value.trim();
+            if (replyText === "") {
                 alert("စာလေး တစ်ခုခု ရိုက်ပေးပါဦးနော်... 🥺");
                 return;
             }
 
+            const btn = document.getElementById('submitBtn');
+            btn.innerHTML = "ခဏစောင့်ပါဦးနော်... ⏳";
+            btn.disabled = true;
+
             const current = new Date();
-            const dateStr = current.toLocaleDateString();
-            const timeStr = current.toLocaleTimeString();
-            
-            savedReply = replyText; 
-            savedTime = `${dateStr} (${timeStr})`; 
-            
-            showFinalSurpriseScreen();
+            const timeStr = current.toLocaleString();
+
+            // 🚀 Send to Telegram Bot
+            const message = `🔔 *ကောင်မလေးဆီက ပြန်စာရောက်လာပြီ* 🔔\n\n📝 စာသား:\n"${replyText}"\n\n⏰ အချိန်: ${timeStr}`;
+            const telegramUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+
+            fetch(telegramUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: TELEGRAM_CHAT_ID,
+                    text: message,
+                    parse_mode: 'Markdown'
+                })
+            })
+            .then(response => {
+                showFinalSurpriseScreen();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showFinalSurpriseScreen(); 
+            });
         }
 
         function showFinalSurpriseScreen() {
@@ -297,21 +308,13 @@
             surpriseDiv.innerHTML = `
                 <div class="rose-shower">🌹✨👩‍❤️‍👨✨💖</div>
                 <h1 class="surprise-title">Surprise! My Princess 👑</h1>
-                
                 <div class="surprise-text">
                     ကိုယ့်ဘဝရဲ့ အဖိုးတန်ဆုံး မင်းသမီးလေး ဖြစ်ပေးလို့ ကျေးဇူးအများကြီး တင်ပါတယ်ဗျာ။ ကိုယ်တို့ နောက်ဘယ်တော့မှ လက်တွဲမဖြုတ်ကြေးနော်... 🥰🌹
                 </div>
-
                 <p style="opacity: 0.8; font-size: 14px; margin-top: 40px; border: 1px dashed #fff; padding: 10px 20px; border-radius: 20px; z-index: 1001;">
-                    💌 မင်းရဲ့ ပြန်စာလေး မောင့်ဆီ လျှို့ဝှက်ရောက်သွားပါပြီ။ ဖုန်းပြန်ပေးလိုက်လို့ ရပါပြီနော်။
+                    💌 မင်းရဲ့ ပြန်စာလေး မောင့်ရဲ့ Telegram ဆီ လျှို့ဝှက်ရောက်သွားပါပြီ။ ဖုန်းပြန်ပေးလိုက်လို့ ရပါပြီနော်။
                 </p>
-
-                <!-- 🔑 မောင် နှိပ်မယ့် လျှို့ဝှက်ခလုတ် -->
-                <button style="background:transparent; border:none; color:transparent; width:200px; height:60px; position:absolute; bottom:10px; cursor:pointer; z-index:1002;" onclick="checkSecret()">
-                    .
-                </button>
             `;
-            
             document.body.appendChild(surpriseDiv);
             createHearts(surpriseDiv);
         }
@@ -322,34 +325,13 @@
                 const heart = document.createElement('div');
                 heart.className = 'heart-fall';
                 heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
-                
                 heart.style.left = Math.random() * 100 + 'vw';
                 heart.style.animationDelay = Math.random() * 3 + 's';
                 heart.style.animationDuration = (Math.random() * 3 + 2) + 's'; 
                 heart.style.fontSize = (Math.random() * 20 + 15) + 'px'; 
-                
                 container.appendChild(heart);
             }
         }
-
-        function checkSecret() {
-            let code = prompt("မောင်... ကောင်မလေး ရိုက်ခဲ့တဲ့စာကို ဖတ်ဖို့ လျှို့ဝှက် Code ကို ရိုက်ထည့်ပါ -");
-            if(code === "6.2.2006") {
-                const area = document.getElementById('secretArea');
-                area.style.display = "block";
-                area.innerHTML = `
-                    <div class="secret-result">
-                        💚 မင်းသမီးလေး ရေးခဲ့တဲ့ လျှို့ဝှက်စာ - <br>
-                        "${savedReply}"<br><br>
-                        🕒 ဖတ်သွားသည့်အချိန် - <br>
-                        ${savedTime}
-                    </div>
-                `;
-            } else {
-                alert("မှားနေတယ်ဗျာ! မောင်ကိုယ်တိုင် မဟုတ်ရင် ဖတ်လို့မရပါဘူး။ 😝");
-            }
-        }
     </script>
-
 </body>
 </html>
