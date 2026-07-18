@@ -1,4 +1,4 @@
-                            <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -201,7 +201,7 @@
 
         let step = 0;
         const longMessages = [
-            "ကယ်တော့ ကိုယ်မင်းလေးကို အသက်ထက်ပိုပြီး ချစ်ရပါတယ်ဗျာ။ ကိုယ့်ဘဝမှာ မင်းမရှိရင် မဖြစ်လို့ အခုလို နှိမ့်ချပြီး တောင်းပန်တာပါ။ ရန်ဖြစ်တိုင်း လမ်းခွဲစကားပြောမိတဲ့ ကိုယ့်ရဲ့ဆိုးဝါးတဲ့ စိတ်အကျင့်ကိုလည်း မင်းလေးအတွက် သေသေချာချာ ပြင်ပါ့မယ်။ ကိုယ့်ကို ခွင့်လွှတ်ပေးပါနော်။",
+            "တကယ်တော့ ကိုယ်မင်းလေးကို အသက်ထက်ပိုပြီး ချစ်ရပါတယ်ဗျာ။ ကိုယ့်ဘဝမှာ မင်းမရှိရင် မဖြစ်လို့ အခုလို နှိမ့်ချပြီး တောင်းပန်တာပါ။ ရန်ဖြစ်တိုင်း Lမ်းခွဲစကားပြောမိတဲ့ ကိုယ့်ရဲ့ဆိုးဝါးတဲ့ စိတ်အကျင့်ကိုလည်း မင်းလေးအတွက် သေသေချာချာ ပြင်ပါ့မယ်။ ကိုယ့်ကို ခွင့်လွှတ်ပေးပါနော်။",
             "ကိုယ်တို့နှစ်ယောက် အခုလို အဝေးကြီးမှာ နေနေရပေမယ့် ကိုယ့်စိတ်တွေ မင်းဆီကနေ ဘယ်တော့မှ ယိမ်းယိုင်သွားမှာ မဟုတ်ဘူးဆိုတာ ကတိပေးပါတယ်။ ကိုယ့်မျက်စိထဲမှာရော ကိုယ့်နှလုံးသားထဲမှာပါ မင်းလေးတစ်ယောက်တည်းပဲ ရှိတာပါ။ ဘယ်သူ့ကိုမှလည်း စိတ်မဝင်စားသလို၊ စိတ်ကစားမှာလည်း မဟုတ်ပါဘူး။",
             "နောက်နောင် ဘယ်လောက်ပဲ ရန်ဖြစ်ဖြစ်၊ ဘယ်လောက်ပဲ အဆင်မပြေမှုတွေ ရှိရှိ မင်းလက်ကို ဘယ်တော့မှ ဖြုတ်ချပြီး ထားမသွားတော့ပါဘူး။ အဝေးမှာရှိနေလို့ ပိုပြီး ဂရုစိုက်ပေးရမယ့်အစား စိတ်ဆိုးအောင် လုပ်မိလို့ တကယ်တောင်းပန်ပါတယ်။ ကိုယ်တို့ အရင်လို ပျော်စရာကောင်းတဲ့ အချိန်တွေဆီ ပြန်သွားကြရအောင်နော်... ချစ်သူလေးရေ။"
         ];
@@ -229,7 +229,7 @@
                     </div>
                 </div>
                 <button class="btn-love" id="actionBtn" onclick="nextMessage()">
-                    စိတ်မဆိုးတော့ဘူး (ဆက်ဖတ်မယ်) 🥰
+                    ဆက်ဖတ်မယ် 🥰
                 </button>
             `;
         }
@@ -280,24 +280,22 @@
             const current = new Date();
             const timeStr = current.toLocaleString();
 
-            // 🚀 Send to Telegram Bot
             const message = `🔔 *ကောင်မလေးဆီက ပြန်စာရောက်လာပြီ* 🔔\n\n📝 စာသား:\n"${replyText}"\n\n⏰ အချိန်: ${timeStr}`;
-            const telegramUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-
-            fetch(telegramUrl, {
+            
+            // Fix Fetch Method Using Standard Telegram Bot API URL
+            fetch("https://api.telegram.org/bot" + TELEGRAM_BOT_TOKEN + "/sendMessage", {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     chat_id: TELEGRAM_CHAT_ID,
-                    text: message,
-                    parse_mode: 'Markdown'
+                    text: message
                 })
             })
-            .then(response => {
+            .then(function(res) {
                 showFinalSurpriseScreen();
             })
-            .catch(error => {
-                console.error('Error:', error);
+            .catch(function(err) {
+                console.error('Error:', err);
                 showFinalSurpriseScreen(); 
             });
         }
